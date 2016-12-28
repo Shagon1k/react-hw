@@ -1,0 +1,35 @@
+{
+  "name": "react-hw",
+  "version": "1.0.0",
+  "description": "React HomeWork",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "watchify index.js -v -t babelify -o bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shagon1k/react-hw.git"
+  },
+  "keywords": [
+    "react",
+    "madness",
+    "homework"
+  ],
+  "author": "Alex Hur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shagon1k/react-hw/issues"
+  },
+  "homepage": "https://github.com/Shagon1k/react-hw#readme",
+  "dependencies": {
+    "babelify": "^7.3.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "watchify": "^3.8.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-react": "^6.16.0"
+  }
+}
