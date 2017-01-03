@@ -24,8 +24,8 @@ class newItemControls extends React.Component {
     render(){
         return (
             <div>
-                <input id="newItem" type="text" value={this.state.item.header} onChange={this.handleChange} />
-                <button onClick={this.onAdd}>
+                <input className="newItemInput" id="newItem" type="text" value={this.state.item.header} onChange={this.handleChange} />
+                <button className="newItemButton" onClick={this.onAdd}>
                     Add New Note
                 </button>
             </div>

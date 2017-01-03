@@ -5,14 +5,10 @@ class Item extends React.Component {
         super(props);
          this.onDelete = this.onDelete.bind(this);
          this.changeCheckState = this.changeCheckState.bind(this);
-
-         this.state={isDone: false};
     }
 
     changeCheckState() {
-        this.setState(prevState => ({
-      isDone: !prevState.isDone
-    }))
+        this.props.changeCheckState(this.props.item);
     }
 
     onDelete() {
@@ -21,12 +17,12 @@ class Item extends React.Component {
 
     render(){
         return (
-            <li>
+            <li className="clearfix">
                 <label>
-                    <input onClick={this.changeCheckState} type="checkbox" checked={this.state.isDone}/>
+                    <input onClick={this.changeCheckState} type="checkbox" checked={this.props.item.isDone}/>
                     {this.props.item.header}
                 </label>
-                <button onClick={this.onDelete} >
+                <button className="deleteButton" onClick={this.onDelete} >
                     Delete Item
                 </button>
             </li>

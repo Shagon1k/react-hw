@@ -8,6 +8,7 @@ class ItemList extends React.Component {
 
          this.onDelete = this.onDelete.bind(this);
          this.onAdd = this.onAdd.bind(this);
+         this.changeCheckState = this.changeCheckState.bind(this);
     }
 
     onDelete(item) {
@@ -18,12 +19,16 @@ class ItemList extends React.Component {
         this.props.onAdd(item);
     }
 
+    changeCheckState(item) {
+        this.props.changeCheckState(item);
+    }
+
     render(){
         return (
-            <div>
+            <div className="listContainer">
                 <NewItemControls onAdd={this.onAdd.bind(this)} />
-                <ul>
-                    {this.props.items.map((item) => <Item item={item} onDelete={this.onDelete.bind(this)} />)}
+                <ul className="itemList">
+                    {this.props.items.map((item) => <Item changeCheckState={this.changeCheckState} item={item} onDelete={this.onDelete.bind(this)} />)}
                 </ul>
 
             </div>

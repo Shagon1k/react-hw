@@ -1,0 +1,99 @@
+html, body, #app {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+.container {
+    margin: 20px;
+    height: 100%;
+}
+    .progressBar {
+        position: relative;
+        margin-bottom: 15px;
+        width: 100%;
+        height: 20px;
+        background-color: #aaa;
+        border-radius: 7px;
+    }
+
+        .progressNumber {
+            position: absolute;
+            top: 3px;
+            right: 50%;
+            color: white;
+            font-weight: bold;
+            z-index: 100;
+        }
+
+        .currentProgress {
+            position: absolute;
+            height: 100%;
+            background-color: #0099ff;
+            border-radius: 7px;
+        }
+
+    .mainContainer {
+        display: flex;
+        flex-flow: row nowrap;
+        align-content: center;
+        border-top:  2px solid black;
+        height: auto;
+    }
+
+        .categoriesContainer, .listContainer {
+            padding: 20px;
+            height:  100%;
+        }
+
+            .categoriesContainer {
+                flex-basis: 400px;
+                border-right:  2px solid black;
+            }
+
+                .newCategoryInput {
+                    margin: 0 10px 10px 0;
+                }
+
+                .newCategoryButton {
+
+                }
+
+
+            .listContainer {
+
+            }
+                .newItemInput {
+                    margin: 0 10px 10px 0;
+                }
+
+                .newItemButton {
+
+                }
+
+                .categoryList li, .itemList li {
+                        margin: 0 3px 5px 0;
+                        padding: 5px;
+                        border: 1px solid grey;
+                    }
+
+                    .selectedCategory {
+                        background:  yellow;
+                    }
+
+                    .categoryList li label, .itemList li label {
+                        cursor:  pointer;
+                        font-size: 18px;
+                    }
+
+                    .deleteButton {
+                        float: right;
+                    }
+
+.clearfix::after {
+   content: "";
+   display: block;
+   clear: both;
+}

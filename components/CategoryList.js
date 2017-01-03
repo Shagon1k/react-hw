@@ -19,17 +19,16 @@ class CategoryList extends React.Component {
         this.props.onAdd(category);
     }
 
-    changeActiveCategory(e) {
-        var li = $(e.target);
-        this.props.changeActiveCategory(li.index());
+    changeActiveCategory(numb) {
+        this.props.changeActiveCategory(numb);
     }
 
     render(){
         return (
-            <div>
+            <div className="categoriesContainer">
                 <NewCategoryControls categoriesCount={this.props.categories.length} onAdd={this.onAdd} />
-                <ul onClick={this.changeActiveCategory}>
-                    {this.props.categories.map((category)=> <Category category={category} onDelete={this.onDelete} />)}
+                <ul className="categoryList" id="categoryList">
+                    {this.props.categories.map((category)=> <Category changeActiveCategory={this.changeActiveCategory} category={category} onDelete={this.onDelete} />)}
                 </ul>
 
             </div>

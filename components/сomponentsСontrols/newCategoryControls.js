@@ -24,8 +24,8 @@ class newCategoryControls extends React.Component {
     render(){
         return (
             <div>
-                <input id="newItem" type="text" value={this.state.category.catName} onChange={this.handleChange} />
-                <button onClick={this.onAdd}>
+                <input className="newCategoryInput" id="newItem" type="text" value={this.state.category.catName} onChange={this.handleChange} />
+                <button className="newCategoryButton" onClick={this.onAdd}>
                     Add New Category
                 </button>
             </div>

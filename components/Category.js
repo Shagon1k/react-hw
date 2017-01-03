@@ -5,6 +5,7 @@ class Category extends React.Component {
         super(props);
 
         this.onDelete = this.onDelete.bind(this);
+        this.changeActiveCategory = this.changeActiveCategory.bind(this);
 
         this.state={};
     }
@@ -13,14 +14,18 @@ class Category extends React.Component {
         this.props.onDelete(this.props.category);
     }
 
+    changeActiveCategory(e) {
+        var li = $(e.target).closest('li');
+        this.props.changeActiveCategory(li.index());
+    }
+
     render(){
         return (
-            <li>
-                <label>
-                    <input type="checkbox" />
+            <li className="clearfix">
+                <label onClick={this.changeActiveCategory}>
+                    {this.props.category.catName}
                 </label>
-                {this.props.category.catName}
-                <button onClick={this.onDelete}>
+                <button className="deleteButton" onClick={this.onDelete}>
                     Delete Category
                 </button>
             </li>
