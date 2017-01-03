@@ -33,6 +33,8 @@ body {
             height: 100%;
             background-color: #0099ff;
             border-radius: 7px;
+            -webkit-transition: width 0.5s ease-out;
+            transition: width 0.5s ease-out;
         }
 
     .mainContainer {

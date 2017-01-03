@@ -8,7 +8,6 @@ class Progressbar extends React.Component {
 
     render(){
         const progressStyle = {
-            backgroundColor: '#0099ff',
             width: this.props.doneCount/this.props.tasksCount*100+'%'
         }
         return (
