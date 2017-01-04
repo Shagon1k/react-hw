@@ -1,6 +1,6 @@
 var React = require('react');
-var Category = require('./Category.js');
-var NewCategoryControls = require('./сomponentsСontrols/newCategoryControls.js')
+var Category = require('./Category.jsx');
+var NewCategoryControls = require('./сomponentsСontrols/newCategoryControls.jsx')
 
 class CategoryList extends React.Component {
     constructor(props) {

@@ -41,8 +41,8 @@ module.exports = Category;
 
 },{"react":186}],2:[function(require,module,exports){
 var React = require('react');
-var Category = require('./Category.js');
-var NewCategoryControls = require('./сomponentsСontrols/newCategoryControls.js');
+var Category = require('./Category.jsx');
+var NewCategoryControls = require('./сomponentsСontrols/newCategoryControls.jsx');
 
 class CategoryList extends React.Component {
     constructor(props) {
@@ -80,7 +80,7 @@ class CategoryList extends React.Component {
 }
 module.exports = CategoryList;
 
-},{"./Category.js":1,"./сomponentsСontrols/newCategoryControls.js":7,"react":186}],3:[function(require,module,exports){
+},{"./Category.jsx":1,"./сomponentsСontrols/newCategoryControls.jsx":7,"react":186}],3:[function(require,module,exports){
 var React = require('react');
 
 class Item extends React.Component {
@@ -120,8 +120,8 @@ module.exports = Item;
 
 },{"react":186}],4:[function(require,module,exports){
 var React = require('react');
-var Item = require('./Item.js');
-var NewItemControls = require('./сomponentsСontrols/newItemControls.js');
+var Item = require('./Item.jsx');
+var NewItemControls = require('./сomponentsСontrols/newItemControls.jsx');
 
 class ItemList extends React.Component {
     constructor(props) {
@@ -159,7 +159,7 @@ class ItemList extends React.Component {
 }
 module.exports = ItemList;
 
-},{"./Item.js":3,"./сomponentsСontrols/newItemControls.js":8,"react":186}],5:[function(require,module,exports){
+},{"./Item.jsx":3,"./сomponentsСontrols/newItemControls.jsx":8,"react":186}],5:[function(require,module,exports){
 var React = require('react');
 
 class Progressbar extends React.Component {
@@ -298,10 +298,10 @@ module.exports = newItemControls;
 },{"react":186}],9:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ItemList = require('./components/ItemList.js');
-var CategoryList = require('./components/CategoryList.js');
-var Progressbar = require('./components/Progressbar.js');
-var Searchitem = require('./components/Searchitem.js');
+var ItemList = require('./components/ItemList.jsx');
+var CategoryList = require('./components/CategoryList.jsx');
+var Progressbar = require('./components/Progressbar.jsx');
+var Searchitem = require('./components/Searchitem.jsx');
 
 class App extends React.Component {
     constructor(props) {
@@ -329,9 +329,7 @@ class App extends React.Component {
     }
 
     changeSearchValue(value) {
-        this.setState({ searchValue: value }, function () {
-            console.log(this.state.searchValue);
-        });
+        this.setState({ searchValue: value });
     }
 
     calculateDoneTasks() {
@@ -429,7 +427,7 @@ class App extends React.Component {
 
 ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
 
-},{"./components/CategoryList.js":2,"./components/ItemList.js":4,"./components/Progressbar.js":5,"./components/Searchitem.js":6,"react":186,"react-dom":35}],10:[function(require,module,exports){
+},{"./components/CategoryList.jsx":2,"./components/ItemList.jsx":4,"./components/Progressbar.jsx":5,"./components/Searchitem.jsx":6,"react":186,"react-dom":35}],10:[function(require,module,exports){
 (function (process){
 'use strict';
 

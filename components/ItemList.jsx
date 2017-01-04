@@ -1,6 +1,6 @@
 var React = require('react');
-var Item = require('./Item.js');
-var NewItemControls = require('./сomponentsСontrols/newItemControls.js')
+var Item = require('./Item.jsx');
+var NewItemControls = require('./сomponentsСontrols/newItemControls.jsx')
 
 class ItemList extends React.Component {
     constructor(props) {

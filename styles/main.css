@@ -10,6 +10,19 @@ body {
     margin: 20px;
     height: 100%;
 }
+
+    .searchItem {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+        .searchItemInput {
+            font-size: 18px;
+            display: inline-block;
+            margin: auto;
+            width: 200px;
+        }
+
     .progressBar {
         position: relative;
         margin-bottom: 15px;

@@ -1,9 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ItemList = require('./components/ItemList.js');
-var CategoryList = require('./components/CategoryList.js');
-var Progressbar = require('./components/Progressbar.js');
-var Searchitem = require('./components/Searchitem.js');
+var ItemList = require('./components/ItemList.jsx');
+var CategoryList = require('./components/CategoryList.jsx');
+var Progressbar = require('./components/Progressbar.jsx');
+var Searchitem = require('./components/Searchitem.jsx');
 
 class App extends React.Component {
     constructor(props) {
@@ -36,9 +36,7 @@ class App extends React.Component {
     }
 
     changeSearchValue(value) {
-        this.setState({searchValue: value}, function() {
-            console.log(this.state.searchValue);
-        })
+        this.setState({searchValue: value})
     }
 
     calculateDoneTasks() {
