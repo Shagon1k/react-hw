@@ -28,7 +28,7 @@ class ItemList extends React.Component {
             <div className="listContainer">
                 <NewItemControls onAdd={this.onAdd.bind(this)} />
                 <ul className="itemList">
-                    {this.props.items.map((item) => <Item changeCheckState={this.changeCheckState} item={item} onDelete={this.onDelete.bind(this)} />)}
+                    {this.props.items.map((item, index) => <Item key={index} changeCheckState={this.changeCheckState} item={item} onDelete={this.onDelete.bind(this)} />)}
                 </ul>
 
             </div>

@@ -28,7 +28,7 @@ class CategoryList extends React.Component {
             <div className="categoriesContainer">
                 <NewCategoryControls categoriesCount={this.props.categories.length} onAdd={this.onAdd} />
                 <ul className="categoryList" id="categoryList">
-                    {this.props.categories.map((category)=> <Category changeActiveCategory={this.changeActiveCategory} category={category} onDelete={this.onDelete} />)}
+                    {this.props.categories.map((category, index)=> <Category key={index} changeActiveCategory={this.changeActiveCategory} category={category} onDelete={this.onDelete} />)}
                 </ul>
 
             </div>

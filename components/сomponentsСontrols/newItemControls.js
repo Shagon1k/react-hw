@@ -5,7 +5,7 @@ class newItemControls extends React.Component {
         super(props);
 
         this.state = {
-            item: {header : ""}
+            item: {header : "", isDone: false}
         }
 
         this.onAdd = this.onAdd.bind(this);
@@ -13,12 +13,12 @@ class newItemControls extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({item: {header: event.target.value} })
+        this.setState({item: {header: event.target.value, isDone: false} })
     }
 
     onAdd() {
         this.props.onAdd(this.state.item);
-        this.setState({item: {header: ""} })
+        this.setState({item: {header: "", isDone: false} })
     }
 
     render(){
