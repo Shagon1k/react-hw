@@ -25,8 +25,8 @@ class newCategoryControls extends React.Component {
         return (
             <div>
                 <input className="newCategoryInput" id="newItem" type="text" value={this.state.category.catName} onChange={this.handleChange} />
-                <button className="newCategoryButton" onClick={this.onAdd}>
-                    Add New Category
+                <button className="newCategoryButton newButton" onClick={this.onAdd}>
+                    Add
                 </button>
             </div>
             );

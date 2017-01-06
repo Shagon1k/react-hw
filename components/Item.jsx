@@ -11,19 +11,18 @@ class Item extends React.Component {
         this.props.changeCheckState(this.props.item);
     }
 
-    onDelete() {
+    onDelete(e) {
+        e.stopPropagation();
         this.props.onDelete(this.props.item);
     }
 
     render(){
         return (
-            <li className="clearfix">
-                <label>
-                    <input onClick={this.changeCheckState} type="checkbox" checked={this.props.item.isDone}/>
-                    {this.props.item.header}
-                </label>
+            <li onClick={this.changeCheckState} className="clearfix">
+                <input type="checkbox" checked={this.props.item.isDone}/>
+                {this.props.item.header}
                 <button className="deleteButton" onClick={this.onDelete} >
-                    Delete Item
+                    <span className="deleteIcon" data-icon="&#xe80f;"></span>
                 </button>
             </li>
             );

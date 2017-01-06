@@ -6,6 +6,35 @@ body {
     min-height: 100%;
 }
 
+button {
+    cursor: pointer;
+}
+
+@font-face {
+    font-family: 'reactikFont';
+    src: url("./fonts/reactikfonts.ttf");
+}
+
+    .deleteIcon::before {
+        font-family: 'reactikFont';
+        content: attr(data-icon);
+        font-size: 19px;
+    }
+
+    .deleteIcon:hover::before {
+        color: red;
+        font-weight: 600;
+    }
+
+    .smileIcon::before {
+        font-family: 'reactikFont';
+        content: attr(data-icon);
+        font-size: 30px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
 .container {
     margin: 20px;
     height: 100%;
@@ -16,60 +45,92 @@ body {
         width: 100%;
     }
 
-        .searchItemInput {
-            font-size: 18px;
+        .searchItemInput, .newCategoryInput, .newItemInput {
+            box-sizing: border-box;
             display: inline-block;
-            margin: auto;
-            width: 200px;
+            vertical-align: top;
+            height: 30px;
+            font-size: 18px;
+            border: 1px solid black;
+            padding: 0 10px;
+        }
+        .newCategoryInput, .newItemInput {
+            border-right: 0;
         }
 
-    .progressBar {
-        position: relative;
-        margin-bottom: 15px;
-        width: 100%;
-        height: 20px;
-        background-color: #aaa;
-        border-radius: 7px;
+    .progressPanel {
+        margin-bottom:  20px;
     }
 
-        .progressNumber {
-            position: absolute;
-            top: 3px;
-            right: 50%;
-            color: white;
-            font-weight: bold;
-            z-index: 100;
+        .progressBar {
+            position: relative;
+            margin-bottom: 15px;
+            width: 100%;
+            height: 20px;
+            background-color: #aaa;
+            border-radius: 7px;
         }
 
-        .currentProgress {
-            position: absolute;
-            height: 100%;
-            background-color: #0099ff;
-            border-radius: 7px;
-            -webkit-transition: width 0.5s ease-out;
-            transition: width 0.5s ease-out;
-        }
+            .progressNumber {
+                position: absolute;
+                top: 3px;
+                right: 49%;
+                color: white;
+                font-weight: bold;
+                z-index: 100;
+            }
+
+            .currentProgress {
+                position: absolute;
+                height: 100%;
+                background-color: #0099ff;
+                border-radius: 7px;
+                -webkit-transition: width 0.5s ease-out;
+                transition: width 0.5s ease-out;
+            }
+
+            .smileIcon {
+                position: relative;
+                width: 49px;
+                height: 49px;
+                margin: 0 auto 10px auto;
+                background: yellow;
+                border-radius: 50%;
+                border: 1px solid black;
+            }
 
     .mainContainer {
         display: flex;
         flex-flow: row nowrap;
-        align-content: center;
-        border-top:  2px solid black;
+        border-top: 2px solid black;
         height: auto;
     }
 
+        .newButton {
+            display: inline-block;
+            vertical-align: top;
+            height: 30px;
+            background: white;
+            border: 1px solid black;
+        }
+        .newButton:active {
+            background: #eee;
+            border-width: 2px;
+        }
+
         .categoriesContainer, .listContainer {
+            box-sizing: border-box;
             padding: 20px;
-            height:  100%;
+            height: 100%;
         }
 
             .categoriesContainer {
                 flex-basis: 400px;
-                border-right:  2px solid black;
+                min-width: 400px;
             }
 
                 .newCategoryInput {
-                    margin: 0 10px 10px 0;
+                    margin: 0 0 10px 0;
                 }
 
                 .newCategoryButton {
@@ -78,10 +139,12 @@ body {
 
 
             .listContainer {
-
+                padding-bottom: 50px;
+                border-left: 2px solid black;
+                width: 100%;
             }
                 .newItemInput {
-                    margin: 0 10px 10px 0;
+                    margin: 0 0 10px 0;
                 }
 
                 .newItemButton {
@@ -89,21 +152,34 @@ body {
                 }
 
                 .categoryList li, .itemList li {
-                        margin: 0 3px 5px 0;
-                        padding: 5px;
-                        border: 1px solid grey;
-                    }
+                    border: 1px solid grey;
+                    border-bottom: 0;
+                }
+                .categoryList li:last-child, .itemList li:last-child {
+                    border-bottom: 1px solid grey;
+                }
+
+                .categoryList li {
+                    padding: 6px;
+                }
+
+                .itemList li {
+                    padding: 15px;
+                    min-width: 400px;
+                }
 
                     .selectedCategory {
                         background:  yellow;
                     }
 
-                    .categoryList li label, .itemList li label {
+                    .categoryList li, .itemList li {
                         cursor:  pointer;
                         font-size: 18px;
                     }
 
                     .deleteButton {
+                        background: inherit;
+                        border: 0;
                         float: right;
                     }
 

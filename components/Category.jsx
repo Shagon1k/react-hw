@@ -10,7 +10,8 @@ class Category extends React.Component {
         this.state={};
     }
 
-    onDelete() {
+    onDelete(e) {
+        e.stopPropagation();
         this.props.onDelete(this.props.category);
     }
 
@@ -21,12 +22,10 @@ class Category extends React.Component {
 
     render(){
         return (
-            <li className="clearfix">
-                <label onClick={this.changeActiveCategory}>
-                    {this.props.category.catName}
-                </label>
+            <li onClick={this.changeActiveCategory} className="clearfix">
+                {this.props.category.catName}
                 <button className="deleteButton" onClick={this.onDelete}>
-                    Delete Category
+                    <span className="deleteIcon" data-icon="&#xe80f;"></span>
                 </button>
             </li>
             );

@@ -11,7 +11,8 @@ class Category extends React.Component {
         this.state = {};
     }
 
-    onDelete() {
+    onDelete(e) {
+        e.stopPropagation();
         this.props.onDelete(this.props.category);
     }
 
@@ -23,16 +24,12 @@ class Category extends React.Component {
     render() {
         return React.createElement(
             'li',
-            { className: 'clearfix' },
-            React.createElement(
-                'label',
-                { onClick: this.changeActiveCategory },
-                this.props.category.catName
-            ),
+            { onClick: this.changeActiveCategory, className: 'clearfix' },
+            this.props.category.catName,
             React.createElement(
                 'button',
                 { className: 'deleteButton', onClick: this.onDelete },
-                'Delete Category'
+                React.createElement('span', { className: 'deleteIcon', 'data-icon': '\uE80F' })
             )
         );
     }
@@ -94,24 +91,21 @@ class Item extends React.Component {
         this.props.changeCheckState(this.props.item);
     }
 
-    onDelete() {
+    onDelete(e) {
+        e.stopPropagation();
         this.props.onDelete(this.props.item);
     }
 
     render() {
         return React.createElement(
             "li",
-            { className: "clearfix" },
-            React.createElement(
-                "label",
-                null,
-                React.createElement("input", { onClick: this.changeCheckState, type: "checkbox", checked: this.props.item.isDone }),
-                this.props.item.header
-            ),
+            { onClick: this.changeCheckState, className: "clearfix" },
+            React.createElement("input", { type: "checkbox", checked: this.props.item.isDone }),
+            this.props.item.header,
             React.createElement(
                 "button",
                 { className: "deleteButton", onClick: this.onDelete },
-                "Delete Item"
+                React.createElement("span", { className: "deleteIcon", "data-icon": "\uE80F" })
             )
         );
     }
@@ -165,21 +159,42 @@ var React = require('react');
 class Progressbar extends React.Component {
     constructor(props) {
         super(props);
+        //this.smileMap = ["&#xe80d;", "&#xe802;", "&#xe800;", "&#xe80c;"]
     }
-
     render() {
+        const progress = this.props.doneCount / this.props.tasksCount * 100;
         const progressStyle = {
-            width: this.props.doneCount / this.props.tasksCount * 100 + '%'
+            width: progress + '%'
         };
+        //let smile;
+        //switch (true) {
+        //    case (progress < 30):
+        //        smile = this.smileMap[0];
+        //        break;
+        //    case (progress < 60):
+        //        smile = this.smileMap[1];
+        //        break;
+        //    case (progress < 85):
+        //        smile = this.smileMap[2];
+        //        break;
+        //    case (progress <= 100):
+        //        smile = this.smileMap[3];
+        //        break;
+        //}
+
         return React.createElement(
             'div',
-            { className: 'progressBar' },
+            { className: 'progressPanel' },
             React.createElement(
-                'span',
-                { className: 'progressNumber' },
-                this.props.doneCount + '/' + this.props.tasksCount
-            ),
-            React.createElement('div', { className: 'currentProgress', style: progressStyle })
+                'div',
+                { className: 'progressBar' },
+                React.createElement(
+                    'span',
+                    { className: 'progressNumber' },
+                    this.props.doneCount + '/' + this.props.tasksCount
+                ),
+                React.createElement('div', { className: 'currentProgress', style: progressStyle })
+            )
         );
     }
 }
@@ -248,8 +263,8 @@ class newCategoryControls extends React.Component {
             React.createElement("input", { className: "newCategoryInput", id: "newItem", type: "text", value: this.state.category.catName, onChange: this.handleChange }),
             React.createElement(
                 "button",
-                { className: "newCategoryButton", onClick: this.onAdd },
-                "Add New Category"
+                { className: "newCategoryButton newButton", onClick: this.onAdd },
+                "Add"
             )
         );
     }
@@ -287,8 +302,8 @@ class newItemControls extends React.Component {
             React.createElement("input", { className: "newItemInput", id: "newItem", type: "text", value: this.state.item.header, onChange: this.handleChange }),
             React.createElement(
                 "button",
-                { className: "newItemButton", onClick: this.onAdd },
-                "Add New Note"
+                { className: "newItemButton newButton", onClick: this.onAdd },
+                "Add"
             )
         );
     }
@@ -318,14 +333,14 @@ class App extends React.Component {
 
         this.state = {
             categories: [{ catName: "Category 1", catNumber: 0, items: [{ header: "1-To-Do Item #1", isDone: false }] }, { catName: "Category 2", catNumber: 1, items: [{ header: "2-To-Do Item #1", isDone: true }, { header: "2-To-Do Item #2", isDone: false }] }, { catName: "Category 3", catNumber: 2, items: [{ header: "3-To-Do Item #1", isDone: false }, { header: "3-To-Do Item #2", isDone: false }, { header: "3-To-Do Item #3", isDone: true }] }],
-            activeCategory: 0,
+            activeCategory: -1,
             searchValue: ''
         };
     }
 
     componentDidMount() {
         this.calculateDoneTasks();
-        this.changeActiveCategory(0);
+        this.changeActiveCategory(-1);
     }
 
     changeSearchValue(value) {
@@ -362,12 +377,16 @@ class App extends React.Component {
     }
 
     onDeleteCategory(category) {
+        if (this.state.categories.indexOf(category) < this.state.activeCategory) {
+            this.changeActiveCategory(this.state.activeCategory - 1);
+        } else if (this.state.categories.indexOf(category) === this.state.activeCategory) {
+            this.changeActiveCategory(-1);
+        }
         this.setState(prevState => {
             return { categories: prevState.categories.filter(i => i !== category) };
         }, function () {
             this.calculateDoneTasks();
         });
-        this.changeActiveCategory(0);
     }
 
     onAddCategory(category) {
@@ -385,7 +404,6 @@ class App extends React.Component {
 
         previousCategory.removeClass('selectedCategory');
         selectedCategory.addClass('selectedCategory');
-
         this.setState({ activeCategory: catNumb });
     }
 
@@ -419,7 +437,7 @@ class App extends React.Component {
                 'div',
                 { className: 'mainContainer' },
                 React.createElement(CategoryList, { onAdd: this.onAddCategory, onDelete: this.onDeleteCategory, changeActiveCategory: this.changeActiveCategory, categories: this.state.categories }),
-                React.createElement(ItemList, { onAdd: this.onAddItem, onDelete: this.onDeleteItem, changeCheckState: this.changeCheckState, items: this.state.categories[this.state.activeCategory].items.filter(i => i.header.includes(this.state.searchValue)) })
+                this.state.activeCategory >= 0 ? React.createElement(ItemList, { onAdd: this.onAddItem, onDelete: this.onDeleteItem, changeCheckState: this.changeCheckState, items: this.state.categories[this.state.activeCategory].items.filter(i => i.header.includes(this.state.searchValue)) }) : null
             )
         );
     }

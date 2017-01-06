@@ -24,7 +24,7 @@ class App extends React.Component {
                 {catName: "Category 2", catNumber: 1, items: [{header : "2-To-Do Item #1", isDone: true}, {header : "2-To-Do Item #2", isDone: false}]},
                 {catName: "Category 3", catNumber: 2, items: [{header : "3-To-Do Item #1", isDone: false}, {header : "3-To-Do Item #2", isDone: false}, {header : "3-To-Do Item #3", isDone: true}]}
             ],
-            activeCategory: 0,
+            activeCategory: -1,
             searchValue: ''
         }
 
@@ -32,7 +32,7 @@ class App extends React.Component {
 
     componentDidMount() {
         this.calculateDoneTasks();
-        this.changeActiveCategory(0);
+        this.changeActiveCategory(-1);
     }
 
     changeSearchValue(value) {
@@ -69,12 +69,18 @@ class App extends React.Component {
     }
 
     onDeleteCategory(category) {
+        if (this.state.categories.indexOf(category) < this.state.activeCategory) {
+                this.changeActiveCategory(this.state.activeCategory-1);
+            }
+            else if (this.state.categories.indexOf(category) === this.state.activeCategory) {
+                this.changeActiveCategory(-1);
+            }
         this.setState((prevState)=>{
             return {categories: prevState.categories.filter((i)=> i !== category)}
         }, function() {
             this.calculateDoneTasks();
+
         });
-        this.changeActiveCategory(0);
     }
 
     onAddCategory(category) {
@@ -92,7 +98,6 @@ class App extends React.Component {
 
         previousCategory.removeClass('selectedCategory');
         selectedCategory.addClass('selectedCategory');
-
         this.setState({activeCategory: catNumb})
     }
 
@@ -123,7 +128,7 @@ class App extends React.Component {
                 <Progressbar doneCount={this.state.doneCount} tasksCount={this.state.tasksCount}></Progressbar>
                 <div className="mainContainer">
                     <CategoryList onAdd={this.onAddCategory} onDelete={this.onDeleteCategory} changeActiveCategory={this.changeActiveCategory}  categories={this.state.categories}></CategoryList>
-                    <ItemList onAdd={this.onAddItem} onDelete={this.onDeleteItem} changeCheckState={this.changeCheckState} items={this.state.   categories[this.state.activeCategory].items.filter((i)=> i.header.includes(this.state.searchValue))}></ItemList>
+                    {(this.state.activeCategory >= 0)?<ItemList onAdd={this.onAddItem} onDelete={this.onDeleteItem} changeCheckState={this.changeCheckState} items={this.state.categories[this.state.activeCategory].items.filter((i)=> i.header.includes(this.state.searchValue))}></ItemList>:null}
                 </div>
             </div>
             );

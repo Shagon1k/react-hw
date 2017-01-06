@@ -22,7 +22,6 @@ class Searchitem extends React.Component {
             <div className="searchItem">
                 <input className="searchItemInput" id="searchItemInput" type="text" value={this.state.searchValue} onChange={this.handleChange} />
             </div>
-
             );
     }
 }
