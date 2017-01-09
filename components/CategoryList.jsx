@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactRouter = require('react-router');
 var Category = require('./Category.jsx');
 var NewCategoryControls = require('./сomponentsСontrols/newCategoryControls.jsx')
 

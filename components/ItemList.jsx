@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactRouter = require('react-router');
 var Item = require('./Item.jsx');
 var NewItemControls = require('./сomponentsСontrols/newItemControls.jsx')
 
