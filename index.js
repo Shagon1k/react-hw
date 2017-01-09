@@ -7,11 +7,6 @@ class App extends React.Component {
     constructor(props) {
         super(props);
     };
-
-    handleChange(event) {
-
-    }
-
     render(){
         return (
             <div> Oh!
